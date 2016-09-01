@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather app</title>
+</head>
+<body>
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function($) {
+        $.ajax({
+            url : "http://api.wunderground.com/api/0e6546645f60d6a3/geolookup/conditions/q/IA/Cedar_Rapids.json",
+            dataType : "jsonp",
+            success : function(parsed_json) {
+                var location = parsed_json['location']['city'];
+                var temp_f = parsed_json['current_observation']['temp_f'];
+                var temp_c = Math.round((temp_f - 32)/1.8);
+                alert(location + "当地实时温度是：" + temp_f + "华氏度," + temp_c + "摄氏度！");
+                document.write(location + "当地实时温度是：" + temp_f + "华氏度," + temp_c + "摄氏度！");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
